@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Overlay Colour Calculator</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+	<h1>Overlay Colour Calculator</h1>
+
+	<main x-data="colourCalculator">
+
+		<label for="input-colour-final">Final colour</label><br>
+		<input type="color" name="colour-final" id="input-colour-final" x-model="final">
+		<input type="text" x-model="final" /><br>
+
+		<label for="input-colour-background">Background colour</label><br>
+		<input type="color" name="colour-background" id="input-colour-background" x-model="background">
+		<input type="text" x-model="background" /><br>
+
+		<br>
+		Candidate overlays<br>
+		<ul class="candidates" :style="{ '--background': background }">
+			<template x-for="( candidate, index ) in candidates">
+				<li :style="{ '--colour': rgba2css( candidate ) }">
+					<span class="swatch"></span>
+					<span class="percent" x-text="Math.round( candidate[3] * 100 ) + '%'"></span>
+					<input type="text" :value="rgba2css( candidate )" readonly size="40" />
+					<span x-text="gamutWarning( candidate )"></span>
+				</li>
+			</template>
+		</ul>
+
+	</main>
+
+	<script type="module" src="./index.js"></script>
+
+</body>
+
+</html>

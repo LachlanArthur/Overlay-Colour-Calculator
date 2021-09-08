@@ -1,0 +1,33 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: system-ui;
+	accent-color: green;
+}
+
+.candidates {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.candidates li .swatch {
+	position: relative;
+	display: inline-block;
+	width: 8em;
+	height: 4em;
+	vertical-align: middle;
+	background: var( --background ) linear-gradient( to right, white 25%, black 50%, black 75%, transparent 75% );
+}
+
+.candidates li .swatch::after {
+	content: '';
+	position: absolute;
+	top: 25%;
+	left: 0;
+	width: 100%;
+	height: 50%;
+	background-color: var( --colour, transparent );
+}
